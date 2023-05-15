@@ -1,0 +1,31 @@
+﻿<Window x:Class="Wpf_Lieferdienst.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_Lieferdienst"
+        mc:Ignorable="d"
+        
+        Title="Lieferdienst" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <!-- 2 columns-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60*" />            <!-- 60% der Breite des Fensters -->
+            <ColumnDefinition Width="40*" />            <!-- 40% der Breite des Fensters -->
+        </Grid.ColumnDefinitions>
+        <!-- Left Column | (Binding: keyword that we will provide a reference to a List with Data) -->
+        <ListView Grid.Column="0" Name="listView" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- We describe how each Object should look: -->
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="{Binding bezeichnung}" />
+                        <Label Content="{Binding preis}" Foreground="darkred" FontWeight="Bold" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <!-- Right Column-->
+        <Button Name="btnAnzeige" Content="Anzeige Essen" Grid.Column="1" Click="Button_Click" IsEnabled="False" />
+    </Grid>
+</Window>
