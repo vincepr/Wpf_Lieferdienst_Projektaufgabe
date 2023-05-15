@@ -19,8 +19,9 @@
                 <DataTemplate>
                     <!-- We describe how each Object should look: -->
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding bezeichnung}" />
-                        <Label Content="{Binding preis}" Foreground="darkred" FontWeight="Bold" />
+                        <Label Content="{Binding bezeichnung}" FontWeight="Bold" FontSize="20"/>
+                        <Label Content="{Binding GetPreis}" Foreground="darkred" FontWeight="Bold" />
+                        <Label Content="{Binding info}" Foreground="green" ContentStringFormat="{} infos:{0}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

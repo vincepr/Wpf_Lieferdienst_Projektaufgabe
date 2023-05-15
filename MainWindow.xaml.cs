@@ -36,6 +36,8 @@ namespace Wpf_Lieferdienst
                 string json = await response.Content.ReadAsStringAsync();
                 foods = JsonConvert.DeserializeObject<List<Food>>(json);
                 btnAnzeige.IsEnabled = true;
+
+                listView.DataContext = foods;
             }
         }
 
@@ -44,8 +46,7 @@ namespace Wpf_Lieferdienst
             await RequestDataFromPhp();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void Button_Click(object sender, RoutedEventArgs e) {
             // ItemSource={Binding} in xaml and foods-List get connected:
             listView.DataContext = foods;
         }
@@ -57,11 +58,13 @@ namespace Wpf_Lieferdienst
         public int eid { get; set; }
         public string bezeichnung { get; set; }
         public double preis { get; set; }
+        public string info { get; set; }
+        public string GetPreis => preis.ToString()+" €";
 
         public override string ToString() {
             string bez = bezeichnung.ToString();
-            if (bez.Length > 7) return $"{eid} \t| {bezeichnung}\t| {preis}";
-            return $"{eid} \t| {bezeichnung} \t\t| {preis}";
+            if (bez.Length > 7) return $"{eid} \t| {bezeichnung}\t| {preis} \t| {info}";
+            return $"{eid} \t| {bezeichnung} \t\t| {preis} \t| {info}";
         }
     }
 }
