@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         
         Title="Lieferdienst" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary Source="Dictionary1.xaml" />
+    </Window.Resources>
     <Grid>
         <!-- 2 columns-->
         <Grid.ColumnDefinitions>
@@ -19,14 +22,14 @@
                 <DataTemplate>
                     <!-- We describe how each Object should look: -->
                     <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding bezeichnung}" FontWeight="Bold" FontSize="20"/>
-                        <Label Content="{Binding GetPreis}" Foreground="darkred" FontWeight="Bold" />
+                        <Label Content="{Binding bezeichnung}" FontWeight="Bold" FontSize="20" Style="{StaticResource label_food1}"/>
+                        <Label Content="{Binding GetPreis}" Foreground="darkred" FontWeight="Bold" Style="{StaticResource label_food2}" />
                         <Label Content="{Binding info}" Foreground="green" ContentStringFormat="{} infos:{0}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-            <!-- Right Column-->
+        <!-- Right Column-->
         <Button Name="btnAnzeige" Content="Anzeige Essen" Grid.Column="1" Click="Button_Click" IsEnabled="False" />
     </Grid>
 </Window>

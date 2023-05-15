@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- we define css-like classes for the label: -->
+    <Style x:Key="label_food1" TargetType="Label">
+        <Setter Property="FontStyle" Value="Italic" />
+        <Setter Property="Foreground" Value="Magenta" />
+    </Style>
+    <!-- and for another type of label -->
+    <Style x:Key="label_food2" TargetType="Label">
+        <Setter Property="Background" Value="Chartreuse" />
+        <Setter Property="Margin" Value="0, 10, 0, 0 " />
+    </Style>
+</ResourceDictionary>

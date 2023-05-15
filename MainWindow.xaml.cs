@@ -42,7 +42,7 @@ namespace Wpf_Lieferdienst
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e) {
-            // blocks till we have data from our Request:
+            // await -> blocks till we have data from our Request:
             await RequestDataFromPhp();
         }
 
