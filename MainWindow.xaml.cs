@@ -70,9 +70,9 @@ namespace Wpf_Lieferdienst
             if (result == true)
                 MessageBox.Show("Vielen Dank für ihre bestellung");
             else if (result == false)
-                MessageBox.Show("some other close (taskmanger/crash etc)");
-            else
                 MessageBox.Show("Clicked Cancel");
+            else
+               MessageBox.Show("some other close (taskmanger/crash etc)");
         }
     }
 
