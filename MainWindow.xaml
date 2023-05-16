@@ -17,14 +17,17 @@
             <ColumnDefinition Width="40*" />            <!-- 40% der Breite des Fensters -->
         </Grid.ColumnDefinitions>
         <!-- Left Column | (Binding: keyword that we will provide a reference to a List with Data) -->
-        <ListView Grid.Column="0" Name="listView" ItemsSource="{Binding}">
+        <ListView Grid.Column="0" Name="listView" ItemsSource="{Binding}" MouseDoubleClick="listView_MouseDoubleClick" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!-- We describe how each Object should look: -->
-                    <StackPanel Orientation="Vertical">
-                        <Label Content="{Binding bezeichnung}" FontWeight="Bold" FontSize="20" Style="{StaticResource label_food1}"/>
-                        <Label Content="{Binding GetPreis}" Foreground="darkred" FontWeight="Bold" Style="{StaticResource label_food2}" />
-                        <Label Content="{Binding info}" Foreground="green" ContentStringFormat="{} infos:{0}" />
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding bild}" Width="100" />
+                        <StackPanel Orientation="Vertical">
+                            <Label Content="{Binding bezeichnung}" FontWeight="Bold" FontSize="20" Style="{StaticResource label_food1}" />
+                            <Label Content="{Binding GetPreis}" Foreground="darkred" FontWeight="Bold" Style="{StaticResource label_food2}" />
+                            <Label Content="{Binding info}" Foreground="green" ContentStringFormat="{} infos:{0}" />
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

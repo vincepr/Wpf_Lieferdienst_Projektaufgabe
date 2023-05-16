@@ -50,6 +50,16 @@ namespace Wpf_Lieferdienst
             // ItemSource={Binding} in xaml and foods-List get connected:
             listView.DataContext = foods;
         }
+
+        private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Food choice = listView.SelectedValue as Food;
+
+            // We create the new FensterBestellen
+            FensterBestellen window = new FensterBestellen(choice);
+            window.ShowDialog();
+
+        }
     }
 
 
@@ -59,6 +69,7 @@ namespace Wpf_Lieferdienst
         public string bezeichnung { get; set; }
         public double preis { get; set; }
         public string info { get; set; }
+        public string bild { get; set; }
         public string GetPreis => preis.ToString()+" €";
 
         public override string ToString() {
