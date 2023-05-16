@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -17,22 +18,26 @@ using System.Windows.Shapes;
 
 namespace Wpf_Lieferdienst
 {
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window
+    {
 
         // Our data:
         List<Food> foods = new List<Food>();
 
         // Main Method:
-        public MainWindow() {
+        public MainWindow()
+        {
             InitializeComponent();
         }
 
         // Task are the async "Threads" of C# 
-        private async Task RequestDataFromPhp() {
+        private async Task RequestDataFromPhp()
+        {
             // make a HTTP request
             HttpClient client = new HttpClient();
             var response = await client.GetAsync("http://localhost/ProjectLieferdienst/essen.php");
-            if (response.IsSuccessStatusCode) {
+            if (response.IsSuccessStatusCode)
+            {
                 string json = await response.Content.ReadAsStringAsync();
                 foods = JsonConvert.DeserializeObject<List<Food>>(json);
                 btnAnzeige.IsEnabled = true;
@@ -41,12 +46,14 @@ namespace Wpf_Lieferdienst
             }
         }
 
-        private async void Window_Loaded(object sender, RoutedEventArgs e) {
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             // await -> blocks till we have data from our Request:
             await RequestDataFromPhp();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             // ItemSource={Binding} in xaml and foods-List get connected:
             listView.DataContext = foods;
         }
@@ -57,8 +64,15 @@ namespace Wpf_Lieferdienst
 
             // We create the new FensterBestellen
             FensterBestellen window = new FensterBestellen(choice);
-            window.ShowDialog();
-
+            // ShowDialog() blocks the current window till it is closed. Show() does not.
+            // we check for the result coming from the FensterBestellen.DialogResult
+            bool? result = window.ShowDialog();
+            if (result == true)
+                MessageBox.Show("Vielen Dank für ihre bestellung");
+            else if (result == false)
+                MessageBox.Show("some other close (taskmanger/crash etc)");
+            else
+                MessageBox.Show("Clicked Cancel");
         }
     }
 

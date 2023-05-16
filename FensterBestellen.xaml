@@ -29,7 +29,7 @@
         <Label Content="Anzahl:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" />
         <TextBox Name="txtAnzahl" Text="1" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Width="100" VerticalAlignment="Center"/>
         <!-- 2 elements per row -->
-        <Button Content="Abbrechen" Name="btnCancel" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Bestellen" Name="btnOk" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Click="btnCancel_Click" Content="Abbrechen" Name="btnCancel" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Click="btnOk_Click" Content="Bestellen" Name="btnOk" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Window>
