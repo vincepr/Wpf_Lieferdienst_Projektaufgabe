@@ -61,7 +61,7 @@ namespace Wpf_Lieferdienst
 
         public void setTotalSum(List<Bestellung> listeBestellungen)
         {
-            double sum = listeBestellungen.Aggregate(0.0, (double acc, Bestellung b) => acc + b.preis * b.anzahl);
+            double sum = listeBestellungen.Aggregate(0.0, (acc, b) => acc + b.preis * b.anzahl);
             gesPreisLabel.Content = "Gesamtpreis: " + sum +" €";
         }
 
@@ -71,10 +71,14 @@ namespace Wpf_Lieferdienst
 
         private async void DeleteBestellung_Double_Click(object sender, MouseButtonEventArgs e)
         {
-            // get the currently selected (we just double clicked on it) Bbestellung:
-            Bestellung curChoice = listView.SelectedValue as Bestellung;
-            await PostRequest_Delete_Bestellung(curChoice);
-            await RefreshWindow();
+            var success = MessageBox.Show("Wirklich löschen", "Bestätigen Löschen", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if(success==MessageBoxResult.OK) 
+            { 
+                // get the currently selected (we just double clicked on it) Bbestellung:
+                Bestellung curChoice = listView.SelectedValue as Bestellung;
+                await PostRequest_Delete_Bestellung(curChoice);
+                await RefreshWindow();
+            }
         }
 
         private async Task PostRequest_Delete_Bestellung(Bestellung bestellung)
@@ -90,6 +94,11 @@ namespace Wpf_Lieferdienst
             var response = await client.PostAsync("http://localhost/ProjectLieferdienst/delete.php", content);
             var txt = await response.Content.ReadAsStringAsync();
             MessageBox.Show("We affected that many rows (bigger than 0 is success):" + txt);
+        }
+
+        private void btnSchließen_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

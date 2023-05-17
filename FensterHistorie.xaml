@@ -8,14 +8,14 @@
         Title="FensterHistorie" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <!-- 2 columns-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*" />
             <!-- 60% der Breite des Fensters -->
-            <ColumnDefinition Width="30*" />
+            <RowDefinition Height="20*" />
             <!-- 40% der Breite des Fensters -->
-        </Grid.ColumnDefinitions>
-        <!-- Left Column | (Binding: keyword that we will provide a reference to a List with Data) -->
-        <ListView Grid.Column="0" Name="listView" ItemsSource="{Binding}" MouseDoubleClick="DeleteBestellung_Double_Click" >
+        </Grid.RowDefinitions>
+        <!-- Upper Row | (Binding: keyword that we will provide a reference to a List with Data) -->
+        <ListView Grid.Row="0" Name="listView" ItemsSource="{Binding}" MouseDoubleClick="DeleteBestellung_Double_Click" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <!-- We describe how each Object should look: -->
@@ -31,10 +31,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!-- Right Column-->
-        <StackPanel Orientation="Vertical" Grid.Column="1">
+        <!-- Down Row-->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" >
             <Label Name="gesPreisLabel"  Content="Gesamtpreis: xxx.yy €" />
-            <Button Name="btnAnzeige" Content="Bestellung Löschen" IsEnabled="False" HorizontalAlignment="Center" />
+            <Button Name="btnSchließen" Content="Schließen" VerticalAlignment="Center" HorizontalAlignment="Right" Click="btnSchließen_Click" />
             
         </StackPanel>
     </Grid>
