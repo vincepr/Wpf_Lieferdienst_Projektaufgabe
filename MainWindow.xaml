@@ -33,6 +33,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <!-- Right Column-->
-        <Button Name="btnAnzeige" Content="Anzeige Essen" Grid.Column="1" Click="Button_Click" IsEnabled="False" />
+        <Button Name="btnAnzeige" Content="Bestellverlauf" Grid.Column="1" Click="Button_Historie" IsEnabled="False" />
     </Grid>
 </Window>

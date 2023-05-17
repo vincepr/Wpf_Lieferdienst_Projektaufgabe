@@ -17,8 +17,8 @@
             <RowDefinition Height="40*" />
             <RowDefinition Height="15*" />
             <RowDefinition Height="15*" />
-            <RowDefinition Height="*" />    <!-- iplicit 15* -->
-            <RowDefinition Height="*" />    <!-- iplicit 15* -->
+            <RowDefinition Height="15*" />    <!-- iplicit 15* -->
+            <RowDefinition Height="15*" />    <!-- iplicit 15* -->
         </Grid.RowDefinitions>
         <!-- Grid.Colum points directly to one Column. With Grid.ColumnSpan we can add 2 Columns together (since its only 2 here we dont have to (start>end) -->
         <!-- 1 element per row each -->

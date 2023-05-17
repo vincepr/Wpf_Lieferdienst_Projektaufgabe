@@ -31,7 +31,7 @@ namespace Wpf_Lieferdienst
         }
 
         // Task are the async "Threads" of C# 
-        private async Task RequestDataFromPhp()
+        private async Task FetchEssenListFromPhp()
         {
             // make a HTTP request
             HttpClient client = new HttpClient();
@@ -41,21 +41,23 @@ namespace Wpf_Lieferdienst
                 string json = await response.Content.ReadAsStringAsync();
                 foods = JsonConvert.DeserializeObject<List<Food>>(json);
                 btnAnzeige.IsEnabled = true;
-
                 listView.DataContext = foods;
             }
         }
 
+        
+
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // await -> blocks till we have data from our Request:
-            await RequestDataFromPhp();
+            await FetchEssenListFromPhp();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        // Anzeige 
+        private void Button_Historie(object sender, RoutedEventArgs e)
         {
-            // ItemSource={Binding} in xaml and foods-List get connected:
-            listView.DataContext = foods;
+            FensterHistorie window = new FensterHistorie();
+            bool? result = window.ShowDialog();
         }
 
         private void listView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -73,23 +75,6 @@ namespace Wpf_Lieferdienst
                 MessageBox.Show("Clicked Cancel");
             else
                MessageBox.Show("some other close (taskmanger/crash etc)");
-        }
-    }
-
-
-    // the wrapper for our Data coming as JSON form the DB/PHP pipeline
-    public class Food {
-        public int eid { get; set; }
-        public string bezeichnung { get; set; }
-        public double preis { get; set; }
-        public string info { get; set; }
-        public string bild { get; set; }
-        public string GetPreis => preis.ToString()+" €";
-
-        public override string ToString() {
-            string bez = bezeichnung.ToString();
-            if (bez.Length > 7) return $"{eid} \t| {bezeichnung}\t| {preis} \t| {info}";
-            return $"{eid} \t| {bezeichnung} \t\t| {preis} \t| {info}";
         }
     }
 }
