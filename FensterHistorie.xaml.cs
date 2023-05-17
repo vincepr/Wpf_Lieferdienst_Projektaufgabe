@@ -74,7 +74,7 @@ namespace Wpf_Lieferdienst
             // get the currently selected (we just double clicked on it) Bbestellung:
             Bestellung curChoice = listView.SelectedValue as Bestellung;
             await PostRequest_Delete_Bestellung(curChoice);
-            RefreshWindow();
+            await RefreshWindow();
         }
 
         private async Task PostRequest_Delete_Bestellung(Bestellung bestellung)
